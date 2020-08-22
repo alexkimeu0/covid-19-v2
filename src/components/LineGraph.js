@@ -75,7 +75,7 @@ const options = {
 
 
 
-const LineGraph = () => {
+const LineGraph = ({ casesType='cases'}) => {
 
     const [data, setData] = useState({});
 
@@ -89,14 +89,14 @@ const LineGraph = () => {
                 return response.json();
             })
             .then(data => {
-                let chartData = buildChartData(data, 'cases');
+                let chartData = buildChartData(data, casesType);
                 setData(chartData);
                 
             })
         }
         fetchData();
 
-    }, []) // casesType not defined
+    }, [casesType]) // casesType not defined -> Needed to get this from props.
 
     
     return (

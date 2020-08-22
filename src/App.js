@@ -10,6 +10,7 @@ import { sortData } from './util';
 
 import { MenuItem, FormControl, Select, Card, CardContent } from '@material-ui/core';
 import './App.css';
+import "leaflet/dist/leaflet.css";
 
 const App = () => {
 
@@ -17,6 +18,8 @@ const App = () => {
   const [country, setCountry] = useState('worldwide');
   const [countryInfo, setCountryInfo] = useState({});
   const [tableData, setTableData] = useState([]);
+  const [mapCenter, setMapCenter] = useState({ lat: 34.80746, lng: -40.4796 });
+  const [mapZoom, setMapZoom] = useState(3);
 
 
     // https://disease.sh/v3/covid-19/countries
@@ -75,6 +78,9 @@ const App = () => {
       .then(data => {
         setCountry(countryCode);
         setCountryInfo(data);
+
+        setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
+        setMapZoom(4);
       })  
   } 
 
@@ -106,7 +112,7 @@ const App = () => {
           <InfoBox title="Recovered" cases={countryInfo.todayRecovered} total={countryInfo.recovered} />
           <InfoBox title="Deaths" cases={countryInfo.todayDeaths} total={countryInfo.deaths} />
         </div>
-        <Map />
+        <Map center={mapCenter} zoom={mapZoom}/>
       </div>
       
       <Card className="app__right">
