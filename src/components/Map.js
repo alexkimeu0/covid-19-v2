@@ -1,9 +1,11 @@
 import React from 'react'
 import { Map as LeafLetMap, TileLayer } from 'react-leaflet';
 
+import { showDataOnMap } from '../util';
+
 import './Map.css';
 
-const Map = ({ center, zoom }) => {
+const Map = ({ countries, casesType, center, zoom }) => {
     return(
         <div className="map">
             <LeafLetMap center={center} zoom={zoom}>
@@ -13,6 +15,8 @@ const Map = ({ center, zoom }) => {
                     />     
 
                     {/* Loop through countries & draw circles */}
+                    { showDataOnMap(countries, casesType) }
+
             </LeafLetMap>
         </div>
     )   
