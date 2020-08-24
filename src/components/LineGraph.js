@@ -75,7 +75,7 @@ const options = {
 
 
 
-const LineGraph = ({ casesType='cases'}) => {
+const LineGraph = ({ casesType='cases', className }) => {
 
     const [data, setData] = useState({});
 
@@ -100,7 +100,7 @@ const LineGraph = ({ casesType='cases'}) => {
 
     
     return (
-        <div>
+        <div className={className}>
 
             {data?.length > 0 && (
                 <Line options = {options} 
